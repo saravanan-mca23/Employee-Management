@@ -47,7 +47,12 @@ export default function EmployeeDashboard() {
     { label: "In Progress Tasks", value: tasks.filter(t => t.progress === "In Progress").length, color: "orange" },
     { label: "Completed Tasks", value: tasks.filter(t => t.progress === "Completed").length, color: "green" },
     { label: "Leaves Taken", value: leaves.filter(l => l.status === "Approved").length, color: "yellow" },
-    { label: "Attendance Today", value: attendance.some(a => a.date.slice(0,10) === new Date().toISOString().slice(0,10)) ? "✔️" : "❌", color: "blue" },
+   { 
+  label: "Attendance Today", 
+  value: attendance.some(a => new Date(a.date).toDateString() === new Date().toDateString()) ? "✔️" : "❌", 
+  color: "blue" 
+}
+,
     { label: "Total Tasks", value: tasks.length, color: "purple" },
   ];
 

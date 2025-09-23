@@ -39,9 +39,11 @@ export default function AdminDashboard() {
           { label: "Active Tasks", value: tasks.filter(t => t.progress === "In Progress").length, color: "blue" },
           { label: "Pending Tasks", value: tasks.filter(t => t.progress === "Not Started").length, color: "red" },
           { label: "Leave Requests", value: leaves.filter(l => l.status === "Pending").length, color: "yellow" },
-          { label: "Attendance Today", value: attendance.filter(a => a.date.slice(0,10) === new Date().toISOString().slice(0,10)).length, color: "purple" },
+          { label: "Attendance Today",  value: attendance.filter(a => new Date(a.date).toDateString() === new Date().toDateString()).length, color: "purple" },
           { label: "Completed Tasks", value: tasks.filter(t => t.progress === "Completed").length, color: "teal" },
         ]);
+        
+
       } catch (err) {
         console.error(err);
         toast.error(err.response?.data?.msg || "Error fetching dashboard data");
